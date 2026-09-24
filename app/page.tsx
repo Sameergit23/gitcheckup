@@ -1,4 +1,5 @@
 import { ChecksMarquee } from "@/components/landing/ChecksMarquee";
+import { Faq } from "@/components/landing/Faq";
 import { Hero } from "@/components/landing/Hero";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { LandingNav } from "@/components/landing/LandingNav";
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HowItWorks />
         <WhatWeCheck />
         <WhoItsFor />
+        <Faq />
       </main>
     </>
   );
