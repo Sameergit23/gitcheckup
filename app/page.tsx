@@ -3,6 +3,7 @@ import { Hero } from "@/components/landing/Hero";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { WhatWeCheck } from "@/components/landing/WhatWeCheck";
+import { WhoItsFor } from "@/components/landing/WhoItsFor";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
         <ChecksMarquee />
         <HowItWorks />
         <WhatWeCheck />
+        <WhoItsFor />
       </main>
     </>
   );
