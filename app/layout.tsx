@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     description,
     siteName: "GitCheckup",
     type: "website",
-    images: [{ url: "/api/og", width: 1200, height: 630, alt: "GitCheckup — is your GitHub ready for judges & clients?" }],
   },
   twitter: { card: "summary_large_image" },
 };
