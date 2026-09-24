@@ -50,6 +50,19 @@
   .btn:disabled {
     @apply cursor-not-allowed opacity-60;
   }
+
+  /* Same press effect for whole cards (e.g. FAQ items). */
+  .press {
+    transition:
+      transform 120ms ease-out,
+      box-shadow 120ms ease-out;
+  }
+
+  .press:hover,
+  .press:has(:focus-visible) {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 theme("colors.ink");
+  }
 }
 
 /* Motion off means off: no keyframes, no transitions. */

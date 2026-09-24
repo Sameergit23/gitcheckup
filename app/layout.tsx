@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Space_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const display = Archivo_Black({
@@ -16,12 +17,6 @@ const mono = Space_Mono({
   variable: "--font-mono",
   display: "swap",
 });
-
-function siteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
-  return vercel ? `https://${vercel}` : "http://localhost:3000";
-}
 
 const description =
   "Score every public repo on README, description, live link, license, activity and topics — and get a fix for each problem.";

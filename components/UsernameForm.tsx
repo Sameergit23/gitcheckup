@@ -2,9 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import { useId, useState, type FormEvent } from "react";
+import { BrutalButton } from "@/components/ui/BrutalButton";
 import { normalizeUsername } from "@/lib/username";
 
-export function UsernameForm({ variant = "hero" }: { variant?: "hero" | "compact" }) {
+export function UsernameForm({
+  variant = "hero",
+  examples = [],
+}: {
+  variant?: "hero" | "compact";
+  /** Usernames offered as "Try it" chips that fill the field and run the checkup. */
+  examples?: string[];
+}) {
   const router = useRouter();
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -12,16 +20,20 @@ export function UsernameForm({ variant = "hero" }: { variant?: "hero" | "compact
   const errorId = `${inputId}-error`;
   const hero = variant === "hero";
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const username = normalizeUsername(value);
+  function run(raw: string): boolean {
+    const username = normalizeUsername(raw);
     if (!username) {
-      setError(value.trim() ? "That doesn't look like a GitHub username." : "Type a GitHub username first.");
-      return;
+      setError(raw.trim() ? "That doesn't look like a GitHub username." : "Type a GitHub username first.");
+      return false;
     }
     setError(null);
-    setValue("");
     router.push(`/u/${username}`);
+    return true;
+  }
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (run(value)) setValue("");
   }
 
   return (
@@ -63,14 +75,32 @@ export function UsernameForm({ variant = "hero" }: { variant?: "hero" | "compact
             }`}
           />
         </div>
-        <button type="submit" className={`btn shrink-0 bg-pink ${hero ? "px-6 py-3 text-lg" : "px-4 py-2 text-base"}`}>
+        <BrutalButton type="submit" color="pink" size={hero ? "lg" : "md"} className="shrink-0">
           Run checkup →
-        </button>
+        </BrutalButton>
       </div>
       {error && (
         <p id={errorId} role="alert" className="text-sm font-bold text-issue">
           ✗ {error}
         </p>
+      )}
+      {examples.length > 0 && (
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm">
+          <span className="font-bold uppercase tracking-widest">Try it:</span>
+          {examples.map((name) => (
+            <BrutalButton
+              key={name}
+              size="sm"
+              className="font-mono normal-case tracking-normal"
+              onClick={() => {
+                setValue(name);
+                run(name);
+              }}
+            >
+              <span className="sr-only">Run a checkup for </span>@{name}
+            </BrutalButton>
+          ))}
+        </div>
       )}
     </form>
   );
