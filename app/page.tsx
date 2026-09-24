@@ -1,5 +1,6 @@
 import { ChecksMarquee } from "@/components/landing/ChecksMarquee";
 import { Hero } from "@/components/landing/Hero";
+import { HowItWorks } from "@/components/landing/HowItWorks";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { CHECKS } from "@/lib/scoring";
 
@@ -11,6 +12,7 @@ export default function HomePage() {
         <Hero />
 
         <ChecksMarquee />
+        <HowItWorks />
 
         <section aria-labelledby="checks-heading" className="mx-auto max-w-6xl px-4 py-16 sm:px-8">
           <h2 id="checks-heading" className="font-display text-3xl uppercase sm:text-4xl">
