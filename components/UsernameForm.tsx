@@ -20,6 +20,7 @@ export function UsernameForm({ variant = "hero" }: { variant?: "hero" | "compact
       return;
     }
     setError(null);
+    setValue("");
     router.push(`/u/${username}`);
   }
 
