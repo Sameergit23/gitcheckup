@@ -44,3 +44,19 @@ export function ArrowLeftIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function PauseIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M8 5v14M16 5v14" />
+    </Icon>
+  );
+}
+
+export function PlayIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M7 4l12 8-12 8z" />
+    </Icon>
+  );
+}

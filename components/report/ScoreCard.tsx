@@ -1,5 +1,6 @@
 import { TIER_BG, TIER_LABEL, stickerFor } from "@/lib/tiers";
 import type { Report, Tier } from "@/lib/types";
+import { CountUp } from "./CountUp";
 
 const ROWS: Tier[] = ["healthy", "needs-work", "poor"];
 
@@ -20,11 +21,11 @@ export function ScoreCard({ report }: { report: Report }) {
             report.score === 100 ? "text-[112px]" : "text-[130px]"
           }`}
         >
-          {report.score}
+          <CountUp value={report.score} />
         </p>
         <p className="mt-4 break-all font-bold">/ 100 · {report.login}</p>
         <span
-          className={`absolute -right-3 -top-5 rotate-[7deg] border-3 border-ink px-3 py-2 font-display text-sm uppercase shadow-brut-sm ${sticker.bg}`}
+          className={`absolute -right-3 -top-5 rotate-[7deg] animate-sticker border-3 border-ink px-3 py-2 font-display text-sm uppercase shadow-brut-sm ${sticker.bg}`}
         >
           {sticker.label}
         </span>

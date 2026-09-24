@@ -37,6 +37,37 @@ const config: Config = {
         "brut-sm": "5px 5px 0 #111111",
         "brut-press": "2px 2px 0 #111111",
       },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-2deg)" },
+          "50%": { transform: "rotate(2deg)" },
+        },
+        sticker: {
+          "0%, 100%": { transform: "rotate(7deg)" },
+          "50%": { transform: "rotate(1deg)" },
+        },
+        pop: {
+          "0%": { transform: "scale(.6) rotate(-4deg)", opacity: "0" },
+          "70%": { transform: "scale(1.05) rotate(0deg)", opacity: "1" },
+          "100%": { transform: "scale(1) rotate(0deg)", opacity: "1" },
+        },
+        "bounce-in": {
+          "0%": { transform: "translateY(40px)", opacity: "0" },
+          "65%": { transform: "translateY(-6px)", opacity: "1" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+      },
+      animation: {
+        marquee: "marquee 18s linear infinite",
+        wiggle: "wiggle 2.4s ease-in-out infinite",
+        sticker: "sticker 1.8s ease-in-out infinite",
+        pop: "pop .55s cubic-bezier(.3,1.4,.5,1) both",
+        "bounce-in": "bounce-in .7s cubic-bezier(.3,1.4,.5,1) both",
+      },
     },
   },
   plugins: [],

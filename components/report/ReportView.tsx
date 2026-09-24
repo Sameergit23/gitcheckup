@@ -62,8 +62,13 @@ export function ReportView({ username }: { username: string }) {
             Repos
           </h2>
           <ul className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {report.repos.map((repo) => (
-              <li key={repo.name}>
+            {report.repos.map((repo, i) => (
+              <li
+                key={repo.name}
+                className="animate-pop"
+                // Stagger 120ms per card, capped so long lists don't keep you waiting.
+                style={{ animationDelay: `${Math.min(i, 15) * 120}ms` }}
+              >
                 <RepoCard repo={repo} />
               </li>
             ))}
