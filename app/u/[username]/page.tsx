@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/Footer";
 import { Logo } from "@/components/Logo";
 import { UsernameForm } from "@/components/UsernameForm";
 import { InvalidUsername } from "@/components/report/ReportErrors";
@@ -42,6 +43,7 @@ export default function ReportPage({ params }: Props) {
       ) : (
         <InvalidUsername value={safeDecode(params.username)} />
       )}
+      <Footer />
     </>
   );
 }

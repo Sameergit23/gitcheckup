@@ -3,6 +3,7 @@ import { Faq } from "@/components/landing/Faq";
 import { FinalCta } from "@/components/landing/FinalCta";
 import { Hero } from "@/components/landing/Hero";
 import { HowItWorks } from "@/components/landing/HowItWorks";
+import { LandingFooter } from "@/components/landing/LandingFooter";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { WhatWeCheck } from "@/components/landing/WhatWeCheck";
 import { WhoItsFor } from "@/components/landing/WhoItsFor";
@@ -20,6 +21,7 @@ export default function HomePage() {
         <Faq />
         <FinalCta />
       </main>
+      <LandingFooter />
     </>
   );
 }

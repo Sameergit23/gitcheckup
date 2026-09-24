@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Space_Mono } from "next/font/google";
-import { Footer } from "@/components/Footer";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -44,7 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${mono.variable}`}>
       <body className="flex min-h-screen flex-col">
         {children}
-        <Footer />
       </body>
     </html>
   );
