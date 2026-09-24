@@ -1,3 +1,4 @@
+import { LandingNav } from "@/components/landing/LandingNav";
 import { Logo } from "@/components/Logo";
 import { Marquee } from "@/components/Marquee";
 import { UsernameForm } from "@/components/UsernameForm";
@@ -15,6 +16,8 @@ const TICKER = [
 
 export default function HomePage() {
   return (
+    <>
+      <LandingNav />
     <main className="flex-1">
       <section className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-4 pb-16 pt-12 text-center sm:gap-10 sm:pt-20">
         <Logo size="lg" />
@@ -56,5 +59,6 @@ export default function HomePage() {
         </ul>
       </section>
     </main>
+    </>
   );
 }
