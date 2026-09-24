@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Marquee } from "@/components/Marquee";
 import type { Report, ReportError } from "@/lib/types";
-import { RepoCard } from "./RepoCard";
+import { RepoGrid } from "./RepoGrid";
 import { ScoreCard } from "./ScoreCard";
 
 type State =
@@ -61,18 +61,7 @@ export function ReportView({ username }: { username: string }) {
           <h2 id="repos-heading" className="sr-only">
             Repos
           </h2>
-          <ul className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {report.repos.map((repo, i) => (
-              <li
-                key={repo.name}
-                className="animate-pop"
-                // Stagger 120ms per card, capped so long lists don't keep you waiting.
-                style={{ animationDelay: `${Math.min(i, 15) * 120}ms` }}
-              >
-                <RepoCard repo={repo} />
-              </li>
-            ))}
-          </ul>
+          <RepoGrid repos={report.repos} />
         </section>
       </main>
     </>
