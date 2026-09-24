@@ -5,6 +5,8 @@ import type { Report, ReportError } from "@/lib/types";
 import { normalizeUsername } from "@/lib/username";
 
 export const dynamic = "force-dynamic";
+// Live-link checks can take a few seconds each (5 in parallel, 5s timeout).
+export const maxDuration = 60;
 
 function json(body: Report | ReportError, status: number, cache = "no-store") {
   return NextResponse.json(body, { status, headers: { "Cache-Control": cache } });
