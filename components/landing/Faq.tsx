@@ -32,13 +32,13 @@ export function Faq() {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className="mx-auto w-full max-w-4xl scroll-mt-24 px-4 py-20 sm:px-8 lg:py-28"
+      className="mx-auto w-full max-w-[1400px] scroll-mt-24 px-4 py-20 sm:px-8 lg:py-28"
     >
       <SectionHeading id="faq-heading" eyebrow="FAQ">
         Questions, answered.
       </SectionHeading>
 
-      <div className="mt-12 flex flex-col gap-5">
+      <div className="mt-12 flex max-w-4xl flex-col gap-5">
         {FAQS.map((item, i) => {
           const isOpen = open === i;
           const buttonId = `${baseId}-q${i}`;
