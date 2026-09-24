@@ -7,9 +7,25 @@ export const site = {
   linkedinUrl: "[YOUR LINKEDIN URL]",
 };
 
-/** Absolute origin for metadata, sitemap and OG links. */
+/**
+ * Absolute origin (no trailing slash) for metadata, sitemap and OG links.
+ * Accepts NEXT_PUBLIC_SITE_URL with or without https:// or a trailing slash;
+ * a malformed value falls through to Vercel's own URL instead of failing the build.
+ */
 export function siteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
-  return vercel ? `https://${vercel}` : "http://localhost:3000";
+  const candidates = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    process.env.VERCEL_URL,
+  ];
+  for (const raw of candidates) {
+    const value = raw?.trim();
+    if (!value) continue;
+    try {
+      return new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`).origin;
+    } catch {
+      // try the next candidate
+    }
+  }
+  return "http://localhost:3000";
 }

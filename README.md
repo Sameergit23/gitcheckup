@@ -66,7 +66,7 @@ Other scripts: `npm run build`, `npm start`, `npm run typecheck`.
 | Variable               | Required | What it does                                                                                                                                                  |
 | ---------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `GITHUB_TOKEN`         | No       | A GitHub personal access token. Raises the API limit from 60 to 5,000 requests/hour, and checks up to 100 repos instead of 30. It needs no scopes; a fine-grained token with "Public repositories (read-only)" is enough. |
-| `NEXT_PUBLIC_SITE_URL` | No       | Public site URL, used for absolute Open Graph image links. On Vercel it falls back to the production or deployment URL automatically.                        |
+| `NEXT_PUBLIC_SITE_URL` | No       | Your public site URL, e.g. `https://gitcheckup.vercel.app`. Used for the canonical link, share-image URLs, `robots.txt` and `sitemap.xml`. On Vercel you can leave it unset: it falls back to the project's production domain, including a custom domain. With or without `https://` and trailing slashes all work. It is read at build time, so redeploy after changing it. |
 
 Without a token the app still works. Because one checkup costs about 2 + (number of repos) API calls, an unauthenticated deployment runs out quickly. The app then shows a "Rate limit hit" screen with the reset time.
 
