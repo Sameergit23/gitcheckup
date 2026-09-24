@@ -1,17 +1,7 @@
+import { ChecksMarquee } from "@/components/landing/ChecksMarquee";
 import { Hero } from "@/components/landing/Hero";
 import { LandingNav } from "@/components/landing/LandingNav";
-import { Marquee } from "@/components/Marquee";
 import { CHECKS } from "@/lib/scoring";
-
-const TICKER = [
-  "README",
-  "DESCRIPTION",
-  "LIVE LINK",
-  "LINK ACTUALLY WORKS",
-  "LICENSE",
-  "RECENT ACTIVITY",
-  "TOPICS",
-];
 
 export default function HomePage() {
   return (
@@ -20,7 +10,7 @@ export default function HomePage() {
       <main className="flex-1">
         <Hero />
 
-        <Marquee label="What gets checked" items={TICKER} />
+        <ChecksMarquee />
 
         <section aria-labelledby="checks-heading" className="mx-auto max-w-6xl px-4 py-16 sm:px-8">
           <h2 id="checks-heading" className="font-display text-3xl uppercase sm:text-4xl">
