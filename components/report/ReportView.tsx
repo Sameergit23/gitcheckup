@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Marquee } from "@/components/Marquee";
 import type { Report, ReportError } from "@/lib/types";
+import { RepoCard } from "./RepoCard";
 import { ScoreCard } from "./ScoreCard";
 
 type State =
@@ -62,8 +63,8 @@ export function ReportView({ username }: { username: string }) {
           </h2>
           <ul className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {report.repos.map((repo) => (
-              <li key={repo.name} className="card p-4">
-                <span className="font-display">{repo.name}</span> — {repo.score}
+              <li key={repo.name}>
+                <RepoCard repo={repo} />
               </li>
             ))}
           </ul>
