@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { GitHubNotFoundError, GitHubRateLimitError } from "@/lib/github";
 import { getReport } from "@/lib/report";
 import type { Report, ReportError } from "@/lib/types";
-import { normalizeUsername } from "@/lib/username";
+import { normalizeUsername, safeDecode } from "@/lib/username";
 
 export const dynamic = "force-dynamic";
 // Live-link checks can take a few seconds each (5 in parallel, 5s timeout).
@@ -13,7 +13,7 @@ function json(body: Report | ReportError, status: number, cache = "no-store") {
 }
 
 export async function GET(_req: Request, { params }: { params: { username: string } }) {
-  const username = normalizeUsername(decodeURIComponent(params.username));
+  const username = normalizeUsername(safeDecode(params.username));
   if (!username) return json({ error: "invalid_username" }, 400);
 
   try {

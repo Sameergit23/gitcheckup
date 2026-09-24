@@ -60,6 +60,10 @@ const config: Config = {
           "65%": { transform: "translateY(-6px)", opacity: "1" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
+        shimmer: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: ".45" },
+        },
       },
       animation: {
         marquee: "marquee 18s linear infinite",
@@ -67,6 +71,7 @@ const config: Config = {
         sticker: "sticker 1.8s ease-in-out infinite",
         pop: "pop .55s cubic-bezier(.3,1.4,.5,1) both",
         "bounce-in": "bounce-in .7s cubic-bezier(.3,1.4,.5,1) both",
+        shimmer: "shimmer 1.2s ease-in-out infinite",
       },
     },
   },

@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import { Logo } from "@/components/Logo";
 import { UsernameForm } from "@/components/UsernameForm";
+import { InvalidUsername } from "@/components/report/ReportErrors";
 import { ReportView } from "@/components/report/ReportView";
-import { normalizeUsername } from "@/lib/username";
+import { normalizeUsername, safeDecode } from "@/lib/username";
 
 type Props = { params: { username: string } };
 
 function usernameFrom(params: Props["params"]) {
-  return normalizeUsername(decodeURIComponent(params.username));
+  return normalizeUsername(safeDecode(params.username));
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const username = usernameFrom(params) ?? "not found";
+  const username = usernameFrom(params) ?? "invalid username";
   return {
     title: `GitCheckup · ${username}`,
     description: `GitHub repo health report for ${username}: README, live link, license, activity and topics.`,
@@ -32,7 +33,7 @@ export default function ReportPage({ params }: Props) {
       {username ? (
         <ReportView key={username} username={username} />
       ) : (
-        <main className="flex-1 px-4 py-10 sm:px-8">That&apos;s not a valid GitHub username.</main>
+        <InvalidUsername value={safeDecode(params.username)} />
       )}
     </>
   );

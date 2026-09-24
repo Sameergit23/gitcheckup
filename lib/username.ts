@@ -13,3 +13,12 @@ export function normalizeUsername(input: string): string | null {
     .split(/[/?#]/)[0];
   return USERNAME_RE.test(bare) ? bare : null;
 }
+
+/** decodeURIComponent that never throws on malformed input like "%E0%A4%A". */
+export function safeDecode(segment: string): string {
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+}
