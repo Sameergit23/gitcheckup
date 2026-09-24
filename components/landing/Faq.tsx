@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { MinusIcon, PlusIcon } from "@/components/Icons";
+import { BrutalCard } from "@/components/ui/BrutalCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const FAQS = [
@@ -44,7 +45,7 @@ export function Faq() {
           const buttonId = `${baseId}-q${i}`;
           const panelId = `${baseId}-a${i}`;
           return (
-            <div key={item.q} className="press border-3 border-ink bg-white shadow-brut">
+            <BrutalCard key={item.q} press>
               <h3>
                 <button
                   id={buttonId}
@@ -72,7 +73,7 @@ export function Faq() {
               >
                 <p>{item.a}</p>
               </div>
-            </div>
+            </BrutalCard>
           );
         })}
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CloseIcon, GitHubIcon, MenuIcon } from "@/components/Icons";
 import { Logo } from "@/components/Logo";
+import { BrutalLink } from "@/components/ui/BrutalButton";
 import { site } from "@/lib/site";
 
 const LINKS = [
@@ -38,15 +39,14 @@ export function LandingNav() {
             </li>
           ))}
           <li className="ml-2">
-            <a
+            <BrutalLink
               href={site.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              external
+              size="icon"
               aria-label="GitCheckup source code on GitHub (opens in a new tab)"
-              className="btn bg-white p-2"
             >
               <GitHubIcon width={20} height={20} />
-            </a>
+            </BrutalLink>
           </li>
         </ul>
 

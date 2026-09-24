@@ -1,4 +1,5 @@
 import { CountUp } from "@/components/report/CountUp";
+import { BrutalCard } from "@/components/ui/BrutalCard";
 import { Sticker } from "@/components/ui/Sticker";
 import { TIER_BG } from "@/lib/tiers";
 import type { Tier } from "@/lib/types";
@@ -42,7 +43,7 @@ export function ReportPreview() {
       </figcaption>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-[minmax(0,200px)_minmax(0,1fr)] sm:items-start">
-        <div className="relative border-3 border-ink bg-yellow px-5 pb-5 pt-4 shadow-brut-lg">
+        <BrutalCard color="yellow" shadow="lg" className="relative px-5 pb-5 pt-4">
           <p className="font-display text-sm uppercase">Your score</p>
           <p className="mt-2 font-display text-[104px] leading-[0.85] tracking-[-0.05em]">
             <CountUp value={SAMPLE_SCORE} />
@@ -51,13 +52,14 @@ export function ReportPreview() {
           <Sticker color="pink" className="absolute -right-3 -top-5">
             Needs love
           </Sticker>
-        </div>
+        </BrutalCard>
 
         <ul className="flex flex-col gap-4">
           {SAMPLE.map((repo, i) => (
-            <li
+            <BrutalCard
+              as="li"
               key={repo.name}
-              className="animate-pop border-3 border-ink bg-white shadow-brut"
+              className="animate-pop"
               style={{ animationDelay: `${450 + i * 120}ms` }}
             >
               <div className={`flex items-center justify-between gap-3 border-b-3 border-ink px-3 py-2 ${TIER_BG[repo.tier]}`}>
@@ -76,7 +78,7 @@ export function ReportPreview() {
                 ))}
                 {repo.more > 0 && <p className="text-muted">+{repo.more} more</p>}
               </div>
-            </li>
+            </BrutalCard>
           ))}
         </ul>
       </div>
