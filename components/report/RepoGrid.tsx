@@ -78,7 +78,7 @@ export function RepoGrid({ repos }: { repos: RepoReport[] }) {
 
       {visible.length > 0 ? (
         // Keyed so the cards pop in again whenever the view changes.
-        <ul key={`${filter}-${sort}`} className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        <ul key={`${filter}-${sort}`} className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
           {visible.map((repo, i) => (
             <li
               key={repo.name}

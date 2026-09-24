@@ -12,7 +12,7 @@ export function RepoCard({ repo }: { repo: RepoReport }) {
             target="_blank"
             rel="noopener noreferrer"
             title={repo.name}
-            className="block truncate hover:underline"
+            className="relative block truncate hover:underline"
           >
             {repo.name}
             <span className="sr-only"> (opens on GitHub)</span>

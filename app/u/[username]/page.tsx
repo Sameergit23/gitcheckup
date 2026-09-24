@@ -24,7 +24,7 @@ export default function ReportPage({ params }: Props) {
 
   return (
     <>
-      <header className="mx-auto flex w-full max-w-[1400px] flex-col gap-6 px-4 py-6 sm:px-8 md:flex-row md:items-center md:justify-between">
+      <header className="mx-auto flex w-full max-w-[1400px] flex-col items-start gap-6 px-4 py-6 sm:px-8 md:flex-row md:items-center md:justify-between">
         <Logo href="/" />
         <div className="w-full md:max-w-md">
           <UsernameForm variant="compact" />

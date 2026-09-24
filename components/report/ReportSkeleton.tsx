@@ -9,7 +9,7 @@ export function ReportSkeleton() {
       <Marquee label="Checkup in progress" items={["SCANNING REPOS", "PINGING LIVE LINKS", "READING READMES"]} />
       <main
         aria-busy="true"
-        className="mx-auto grid w-full max-w-[1400px] flex-1 gap-10 px-4 py-10 sm:px-8 md:grid-cols-[300px_minmax(0,1fr)] md:items-start"
+        className="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-10 px-4 py-10 sm:px-8 md:grid-cols-[300px_minmax(0,1fr)] md:items-start"
       >
         <div aria-hidden="true" className="flex flex-col gap-5">
           <div className="h-[268px] animate-shimmer border-3 border-ink bg-yellow shadow-brut-lg" />
@@ -24,7 +24,7 @@ export function ReportSkeleton() {
               <div key={i} className="h-11 animate-shimmer border-3 border-ink bg-white shadow-brut-sm" style={{ width: w }} />
             ))}
           </div>
-          <ul className="grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
             {CARD_STRIPS.map((strip, i) => (
               <li key={i} className="card animate-shimmer" style={{ animationDelay: `${i * 120}ms` }}>
                 <div className={`h-[52px] border-b-3 border-ink ${strip}`} />

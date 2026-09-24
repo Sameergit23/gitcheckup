@@ -75,7 +75,7 @@ function ReportBody({
         label="Issues found"
         items={report.issueTags.length > 0 ? report.issueTags : ["ALL CHECKS PASSED", "NICE WORK"]}
       />
-      <main className="mx-auto grid w-full max-w-[1400px] flex-1 gap-10 px-4 py-10 sm:px-8 md:grid-cols-[300px_minmax(0,1fr)] md:items-start">
+      <main className="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-10 px-4 py-10 sm:px-8 md:grid-cols-[300px_minmax(0,1fr)] md:items-start">
         <h1 className="sr-only">GitHub repo health report for {report.login}</h1>
         <aside aria-label="Summary">
           <ScoreCard report={report} />
