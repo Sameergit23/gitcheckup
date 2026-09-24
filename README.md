@@ -2,12 +2,25 @@
 
 **Is your GitHub ready for judges & clients?** GitCheckup is a GitHub repo health checker with a loud, neo-brutalist UI. Type a username and it scores every public, non-fork repo out of 100. It checks what a reviewer actually clicks: the README, the description, whether the live link exists and actually loads, the license, recent activity and topics. Every failed check comes with a specific fix.
 
-<!-- Screenshot: save one as docs/screenshot.png and uncomment the line below. -->
+**Live site:** [YOUR LIVE URL] <!-- e.g. https://gitcheckup.vercel.app -->
+
+<!-- Screenshots: save them in docs/ and uncomment the lines below. -->
+<!-- ![GitCheckup landing page](docs/landing.png) -->
 <!-- ![GitCheckup report page](docs/screenshot.png) -->
 
-> **Screenshot:** _placeholder — add `docs/screenshot.png`_
+> **Screenshots:** _placeholders — add `docs/landing.png` (landing page) and `docs/screenshot.png` (report page)_
 
 ## Features
+
+### Landing page (`/`)
+
+- **Sections.** Sticky nav with anchor links (a bordered Menu button on mobile), a hero with the username form and "Try it" example chips, and an animated **example report** labelled as sample data. Then the checks ticker, How it works, the 7 checks with their points, Who it's for, a FAQ accordion, a final call to action and the footer.
+- **Honest content.** No invented stats, user counts or testimonials. The example report's numbers follow the real scoring rules, and the checks grid reads its points from `lib/scoring.ts`.
+- **Scroll reveal.** Cards pop in once as they scroll into view. Content stays visible without JS and under `prefers-reduced-motion`.
+- **SEO.** Title, description, canonical URL, Open Graph and Twitter cards, a generated brutalist share image (`app/opengraph-image.tsx`), a heartbeat favicon, `robots.txt` and `sitemap.xml`.
+- **Lighthouse.** Measured locally on a production build: mobile 99 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100 (Performance / Accessibility / Best Practices / SEO).
+
+### Report page (`/u/[username]`)
 
 - **Profile score.** The average of all repo scores, with a sticker: _Needs love_ (under 50), _Getting there_ (50–79) or _Looking good_ (80+).
 - **Repo cards.** Each header strip is colored by health: mint for 80+, yellow for 50–79, rose for under 50. The body lists every failed check as `✗ issue` with a `Fix:` line.
@@ -75,13 +88,19 @@ Browser ──► /u/[username]      (page: header, skeleton, report UI)
 
 ```
 app/
-  page.tsx                   home
+  page.tsx                   landing page (+ metadata)
+  opengraph-image.tsx        landing share image (also twitter-image.tsx)
+  robots.ts, sitemap.ts      SEO files
   u/[username]/page.tsx      report page (+ metadata)
   u/route.ts                 no-JS form fallback (/u?username=x → /u/x)
   api/report/[username]/     report JSON
-  api/og/                    Open Graph image (edge)
-components/                  UI (Marquee, Logo, UsernameForm, report/*)
+  api/og/                    per-user Open Graph image (edge)
+components/
+  landing/                   landing sections (nav, hero, FAQ, footer…)
+  report/                    report page UI
+  ui/                        BrutalButton, BrutalCard, Sticker, SectionHeading, Reveal
 lib/
+  site.ts                    repo, author and LinkedIn URLs; site origin
   github.ts                  GitHub REST client + errors
   scoring.ts                 the 100-point rules and fixes
   liveLink.ts                homepage checker
@@ -94,6 +113,7 @@ lib/
 2. Go to [vercel.com/new](https://vercel.com/new) and import the repository. Vercel detects Next.js; keep the default build settings.
 3. Under **Environment Variables**, add `GITHUB_TOKEN` for Production (and Preview if you want). Optionally add `NEXT_PUBLIC_SITE_URL` (for example `https://gitcheckup.vercel.app`).
 4. Click **Deploy**.
+5. Put the deployed URL in the **Live site** line at the top of this README, and replace the LinkedIn placeholder in `lib/site.ts`.
 
 Or from the command line:
 
