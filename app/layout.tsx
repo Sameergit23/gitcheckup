@@ -17,10 +17,27 @@ const mono = Space_Mono({
   display: "swap",
 });
 
+function siteUrl(): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+  return vercel ? `https://${vercel}` : "http://localhost:3000";
+}
+
+const description =
+  "Score every public repo on README, description, live link, license, activity and topics — and get a fix for each problem.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl()),
   title: "GitCheckup · GitHub Repo Health Checker",
-  description:
-    "Score every public repo on README, description, live link, license, activity and topics — and get a fix for each problem.",
+  description,
+  openGraph: {
+    title: "GitCheckup",
+    description,
+    siteName: "GitCheckup",
+    type: "website",
+    images: [{ url: "/api/og", width: 1200, height: 630, alt: "GitCheckup — is your GitHub ready for judges & clients?" }],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

@@ -12,10 +12,17 @@ function usernameFrom(params: Props["params"]) {
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const username = usernameFrom(params) ?? "invalid username";
+  const username = usernameFrom(params);
+  if (!username) return { title: "GitCheckup · invalid username" };
+
+  const title = `GitCheckup · ${username}`;
+  const description = `GitHub repo health report for ${username}: README, live link, license, activity and topics.`;
+  const image = { url: `/api/og?u=${username}`, width: 1200, height: 630, alt: `${username}'s GitCheckup score` };
   return {
-    title: `GitCheckup · ${username}`,
-    description: `GitHub repo health report for ${username}: README, live link, license, activity and topics.`,
+    title,
+    description,
+    openGraph: { title, description, images: [image] },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
