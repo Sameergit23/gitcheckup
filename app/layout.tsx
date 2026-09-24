@@ -15,6 +15,11 @@ const mono = Space_Mono({
   weight: ["400", "700"],
   variable: "--font-mono",
   display: "swap",
+  // A monospace fallback has almost the same advance width (0.60em vs 0.612em),
+  // so text wraps the same before and after the swap: far less layout shift
+  // than the default size-adjusted Arial.
+  fallback: ["Courier New", "monospace"],
+  adjustFontFallback: false,
 });
 
 const description =

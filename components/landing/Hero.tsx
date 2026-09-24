@@ -14,11 +14,16 @@ export function Hero() {
           id="hero-heading"
           className="font-display text-[40px] uppercase leading-[1.02] sm:text-[56px] lg:text-[60px] xl:text-[72px]"
         >
-          Is your GitHub{" "}
+          {/* Fixed line breaks on phones so the fallback font wraps exactly like
+              Archivo Black does: no layout shift when the web font arrives. */}
+          Is your <br className="sm:hidden" />
+          GitHub <br className="sm:hidden" />
           <span className="inline-block -rotate-2 border-3 border-ink bg-yellow px-2 leading-[0.95] shadow-brut-sm">
             ready
           </span>{" "}
-          for judges &amp; clients?
+          for <br className="sm:hidden" />
+          judges &amp; <br className="sm:hidden" />
+          clients?
         </h1>
         <p className="max-w-xl text-base sm:text-lg">
           GitCheckup scans every public repo and tells you exactly what&apos;s missing — README, live

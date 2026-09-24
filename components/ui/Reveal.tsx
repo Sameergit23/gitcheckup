@@ -28,18 +28,24 @@ export function Reveal({
     if (!el || typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) return; // already on screen
-
-    setPhase("waiting");
+    // The observer's first callback says whether the element starts on screen,
+    // without forcing a synchronous layout read.
+    let first = true;
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
+        const visible = entries.some((e) => e.isIntersecting);
+        if (first) {
+          first = false;
+          if (visible) io.disconnect(); // already on screen: leave it be
+          else setPhase("waiting");
+          return;
+        }
+        if (visible) {
           setPhase("shown");
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.1 },
     );
     io.observe(el);
     return () => io.disconnect();
