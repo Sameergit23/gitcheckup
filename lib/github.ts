@@ -1,6 +1,8 @@
 // Server-only GitHub REST helpers. Never import this from a client component:
 // it reads GITHUB_TOKEN.
 
+import { unstable_cache } from "next/cache";
+
 const API = "https://api.github.com";
 const REVALIDATE_SECONDS = 600; // cache GitHub responses for 10 minutes
 const PER_PAGE = 100;
@@ -120,8 +122,7 @@ export async function fetchRepos(
   };
 }
 
-/** Length of the repo's README in characters; 0 when there isn't one. */
-export async function fetchReadmeLength(fullName: string): Promise<number> {
+async function readmeLength(fullName: string): Promise<number> {
   const res = await gh(`/repos/${fullName}/readme`);
   // 404 = no README. Other failures (e.g. a DMCA 451) are rare; count them as missing too.
   if (!res.ok) return 0;
@@ -133,3 +134,12 @@ export async function fetchReadmeLength(fullName: string): Promise<number> {
   // Files over 1 MB come back without inline content; the byte size is close enough.
   return data.size ?? 0;
 }
+
+/**
+ * Length of the repo's README in characters; 0 when there isn't one.
+ * Next's fetch cache only keeps 200s, so "no README" (a 404) would cost an API
+ * call on every visit. Caching the computed length covers both cases.
+ */
+export const fetchReadmeLength = unstable_cache(readmeLength, ["gitcheckup-readme-v1"], {
+  revalidate: REVALIDATE_SECONDS,
+});
